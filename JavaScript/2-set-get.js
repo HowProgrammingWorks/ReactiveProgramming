@@ -3,17 +3,7 @@
 const { PI, sqrt } = Math;
 const square = x => x * x;
 
-// Truncated cone
-
-const volume = (h, r1, r2) => (PI * h / 3) *
-  (square(r1) + r1 * r2 + square(r2));
-
-const area = (h, r1, r2) => PI * (
-  square(r1) + square(r2) +
-  sqrt(square(h) + square(r2 - r1)) * (r1 + r2)
-);
-
-// Reactive cone
+// Reactive Truncated cone
 
 class Cone {
   constructor(r1, r2, h) {
@@ -21,9 +11,12 @@ class Cone {
     this.calculate();
   }
   calculate() {
-    const cone = this.cone;
-    cone.v = volume(cone.h, cone.r1, cone.r2);
-    cone.s = area(cone.h, cone.r1, cone.r2);
+    const { r1, r2, h } = this.cone;
+    const sr1 = square(r1);
+    const sr2 = square(r2);
+    const l = sqrt(square(h) + square(r2 - r1));
+    this.cone.v = PI * h * (sr1 + r1 * r2 + sr2) / 3;
+    this.cone.s = PI * (sr1 + sr2 + l * (r1 + r2));
   }
   set r1(x) {
     this.cone.r1 = x;
