@@ -12,11 +12,11 @@ const variables = {
   count: 0,
 };
 
-ee.on('city', city => {
+ee.on('city', (city) => {
   variables.count++;
   variables.maxDensity = max(variables.maxDensity, city.density);
   cities.push(city);
-  cities.forEach(city => {
+  cities.forEach((city) => {
     city.relative = Math.round(city.density * 100 / variables.maxDensity);
   });
   console.table(variables);

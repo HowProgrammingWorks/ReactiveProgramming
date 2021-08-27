@@ -1,7 +1,7 @@
 'use strict';
 
 const { PI, sqrt } = Math;
-const square = x => x * x;
+const square = (x) => x * x;
 
 // Reactive Truncated cone
 
